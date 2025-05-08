@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Custom\Enums\OrderStatus;
 use App\Events\OrderCancelled;
 use App\Events\OrderContinued;
 use App\Events\OrderCreated;
@@ -48,6 +49,9 @@ class ChangeProductsCountInStock
          * в таблице stocks увеличивается.
          * */
         if ($event instanceof OrderUpdated) {
+            if ($event->newOrder->status == OrderStatus::COMPLETED->value) {
+                return;
+            }
             $oldOrderProducts = $event->oldOrder->products;
             $newOrderProducts = $event->newOrder->products;
 
