@@ -49,9 +49,6 @@ class ChangeProductsCountInStock
          * в таблице stocks увеличивается.
          * */
         if ($event instanceof OrderUpdated) {
-            if ($event->newOrder->status == OrderStatus::COMPLETED->value) {
-                return;
-            }
             $oldOrderProducts = $event->oldOrder->products;
             $newOrderProducts = $event->newOrder->products;
 

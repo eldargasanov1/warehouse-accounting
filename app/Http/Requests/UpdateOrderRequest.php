@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Custom\Enums\OrderStatus;
 use App\Rules\EnoughProductInStock;
+use App\Rules\OrderIsActive;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -14,7 +16,9 @@ class UpdateOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $order = request()->route('order');
+        $isOrderCompleted = $order->status == OrderStatus::COMPLETED->value;
+        return !$isOrderCompleted;
     }
 
     /**
