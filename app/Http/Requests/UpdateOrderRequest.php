@@ -17,8 +17,8 @@ class UpdateOrderRequest extends FormRequest
     public function authorize(): bool
     {
         $order = request()->route('order');
-        $isOrderCompleted = $order->status == OrderStatus::COMPLETED->value;
-        return !$isOrderCompleted;
+        $isOrderActive = $order->status == OrderStatus::ACTIVE->value;
+        return $isOrderActive;
     }
 
     /**
