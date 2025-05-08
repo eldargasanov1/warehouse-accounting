@@ -25,6 +25,7 @@ php artisan sail:install -> Enter
 ```
 ## Routes
 Перед выполнением запроса необходимо в **_headers_** указать полученный **_токен авторизации_**.
+Все запросы выполнялись в Insomnia.
 ### Просмотр списка складов:
 ```ts
 async function getWarehouses() {
