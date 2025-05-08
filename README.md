@@ -8,7 +8,7 @@ cd warehouse-accounting
 
 git init
 git remote add origin https://github.com/eldargasanov1/warehouse-accounting.git
-git pull origin main
+git pull origin master
 
 # Установка и запуск Laravel Sail
 composer require laravel/sail --dev
