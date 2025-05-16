@@ -17,11 +17,12 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
-        $status = $this->faker->randomElement(OrderStatus::values());
         return [
             'customer' => $this->faker->name(),
-            'status' => $status,
-            'completed_at' => $status === OrderStatus::COMPLETED->value ? now() : null,
+            'status' => $this->faker->randomElement(OrderStatus::values()),
+            'completed_at' => function (array $attributes) {
+                return $attributes['status'] === OrderStatus::COMPLETED->value ? now() : null;
+            },
         ];
     }
 }
