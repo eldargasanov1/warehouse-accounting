@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         foreach ($warehouses as $warehouse) {
             foreach ($products as $product) {
                 if (rand(0, 5)) {
-                    $stock = Stock::factory()->for($warehouse)->for($product)->create();
+                    Stock::factory()->for($warehouse)->for($product)->create();
                 }  else {
-                    $stock = Stock::factory()->for($warehouse)->for($product)->create([
+                    Stock::factory()->for($warehouse)->for($product)->create([
                         'stock' => 0
                     ]);
                 }
