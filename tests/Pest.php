@@ -11,9 +11,20 @@
 |
 */
 
+use App\Models\User;
+use Laravel\Sanctum\Sanctum;
+
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+    ->in('Feature')
+    ->group('warehouses')
+    ->beforeEach(function () {
+        $this->seed();
+        Sanctum::actingAs(
+            User::factory()->create()
+        );
+    });
+
 
 /*
 |--------------------------------------------------------------------------
