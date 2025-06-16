@@ -15,6 +15,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Throwable;
@@ -45,6 +46,15 @@ class OrderController extends Controller
             $result = Order::all();
         }
         return OrderResource::collection($result);
+    }
+
+    /**
+     * Display the resource.
+     * @throws Throwable
+     */
+    public function one(Request $request, Order $order): JsonResource
+    {
+        return $order->toResource();
     }
 
     /**

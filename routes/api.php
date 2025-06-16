@@ -8,10 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('warehouses', WarehouseController::class);
 Route::apiResource('products', ProductController::class);
+Route::prefix('orders')->apiResource('orders', OrderController::class);
 Route::prefix('orders')->controller(OrderController::class)->group(callback: function () {
-    Route::get('/', 'index');
-    Route::post('/', 'store');
-    Route::patch('/{order}', 'update');
+    Route::get('/{order}', 'one');
     Route::post('/complete', 'complete');
     Route::post('/cancel', 'cancel');
     Route::post('/continue', 'continue');
