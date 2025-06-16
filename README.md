@@ -6,7 +6,7 @@
 git clone https://github.com/eldargasanov1/warehouse-accounting.git
 
 # Установка и запуск Laravel Sail
-composer require laravel/sail --dev
+composer install
 cp .env.example .env
 php artisan sail:install -> Enter
 ./vendor/bin/sail up -d
