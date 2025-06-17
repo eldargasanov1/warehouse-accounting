@@ -16,8 +16,12 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: copy .env
         run: cp .env.example .env
+      - name: cat .env
+        run: cat .env
       - name: run sail
         run: ./vendor/bin/sail up -d
+      - name: cat .env in sail
+        run: ./vendor/bin/sail cat .env
       - name: generate key
         run: ./vendor/bin/sail artisan key:generate
       - name: migrate db
