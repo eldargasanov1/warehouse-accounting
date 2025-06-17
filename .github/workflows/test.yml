@@ -21,7 +21,10 @@ jobs:
       - name: run sail
         run: ./vendor/bin/sail up -d
       - name: cat .env in sail
-        run: ./vendor/bin/sail cat .env
+        run: |
+          ./vendor/bin/sail attach
+          cat .env
+          exit
       - name: generate key
         run: ./vendor/bin/sail artisan key:generate
       - name: migrate db
