@@ -25,6 +25,6 @@ jobs:
       - name: start sail
         run: |
           ./vendor/bin/sail up -d
-      - name: migrate db
+      - name: test
         run: |
-          ./vendor/bin/sail run cat .env
+          ./vendor/bin/sail test
