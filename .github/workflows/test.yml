@@ -12,15 +12,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: install dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: copy .env
+        run: cp .env.example .env
       - name: run sail
         run: ./vendor/bin/sail up -d
-      - name: Generate key
+      - name: generate key
         run: ./vendor/bin/sail artisan key:generate
-      - name: Generate key
+      - name: migrate db
         run: ./vendor/bin/sail artisan migrate
       - name: execute tests
         run: ./vendor/bin/sail artisan test
