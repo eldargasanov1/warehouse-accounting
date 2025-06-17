@@ -27,4 +27,4 @@ jobs:
           ./vendor/bin/sail up -d
       - name: migrate db
         run: |
-          ./vendor/bin/sail artisan migrate
+          ./vendor/bin/sail run cat .env
