@@ -12,18 +12,19 @@
 */
 
 use App\Models\User;
+use Database\Seeders\TestingSeeder;
 use Laravel\Sanctum\Sanctum;
 
-pest()->extend(Tests\TestCase::class)
+pest()
+    ->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature')
-    ->group('warehouses')
     ->beforeEach(function () {
-        $this->seed();
+        $this->seed(TestingSeeder::class);
         Sanctum::actingAs(
             User::factory()->create()
         );
-    });
+    })
+    ->in('Feature');
 
 
 /*
