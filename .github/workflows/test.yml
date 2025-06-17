@@ -25,6 +25,6 @@ jobs:
       - name: start sail
         run: |
           ./vendor/bin/sail up -d
-      - name: ls in container
+      - name: migrate db
         run: |
-          ./vendor/bin/sail run ls -la
+          ./vendor/bin/sail artisan migrate
